@@ -1,0 +1,32 @@
+float getBatteryPCT(int mV) {
+  //Convert LiPo vBatt in millivolts to estimated percent capacity remaining
+  //This models the typical LiPo discharge curve and was dervied 
+  //by using Vbatt and Pct Charge returned from a MAX17048
+  #define FULL 4200   // >= FULL 100&
+  #define EMPTY 3499  // < EMPTY 0%
+  float pct;
+
+ if( mV >= FULL) {
+    pct = 100.0;
+  } 
+  else if( mV >= 3880) {
+    pct = map(mV,3880,FULL-1,600,999)/10.0;
+  } 
+  else if (mV >= 3750) {
+    pct = map(mV,3750,3879,202,599)/10.0;
+  }
+  else if ( mV >= 3700 ) {
+    pct = map(mV,3700,3749,79,201)/10.0;
+  }
+  else if (mV >= 3610 ) {
+    pct = map(mV,3610,3699,20,78)/10.0;
+  }
+  else if (mV >= EMPTY) {
+    pct = map(mV,EMPTY,3609,1,19)/10.0;
+  }
+  else {
+    pct = 0.0;
+  }
+  log_v("Vbatt: %d mV, Pct Charge: %.2f%%\r\n",mV, pct);
+  return pct;    
+}
