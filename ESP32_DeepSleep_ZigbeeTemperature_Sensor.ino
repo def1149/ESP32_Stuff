@@ -20,7 +20,7 @@
 ///        Includes Watchdog Timer in case device hangs
 ///        Includes flexible LED Blink function
 ///        Includes flexible Sleep function    
-///        Has a simple moving average function to smooth out a jittery temperature sensor data to eliminate suprious reports
+///        Has a simple moving average function to smooth out a jittery temperature sensor data to eliminate spurious reports
 ///
 ///
 ///   Occam   03/28/2025 https://github.com/def1149/ESP32_Stuff
@@ -278,7 +278,7 @@ void report(float temperature)
     if ((int)rtc_get_reset_reason(0) != 5 )  { // =  SW_CPU_RESET=12  // POWERON_RESET=1 //DEEPSLEEP_RESET=5
       delay(10000);
     } else {
-      delay(30);   // Allow time for update. Needed? Is there a "delivered"  status that can be checked in loop? 
+      delay(200);   // Allow time for update. Needed? Is there a "delivered"  status that can be checked in loop? 
     }
   
   // Reset after reporting 
