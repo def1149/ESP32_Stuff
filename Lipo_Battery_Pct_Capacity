@@ -1,6 +1,6 @@
 float getBatteryPCT(int mV) {
   //Convert LiPo vBatt in millivolts to estimated percent capacity remaining
-  //This models the typical LiPo discharge curve and was dervied 
+  //This models the typical non-linear LiPo discharge curve and was derived 
   //by using Vbatt and Pct Charge returned from a MAX17048
   #define FULL 4200   // >= FULL 100&
   #define EMPTY 3499  // < EMPTY 0%
